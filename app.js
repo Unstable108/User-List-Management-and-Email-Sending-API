@@ -1,22 +1,14 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const listRoutes = require("./routes/listRoutes");
 const userRoutes = require("./routes/userRoutes");
 const dotenv = require("dotenv");
+const db = require("./db");
 
 dotenv.config();
-console.log("EMAIL:", process.env.EMAIL);
-console.log("EMAIL_PASSWORD:", process.env.EMAIL_PASSWORD);
-console.log("PORT:", process.env.PORT);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 app.use(express.json());
 

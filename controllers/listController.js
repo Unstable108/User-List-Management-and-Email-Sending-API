@@ -22,7 +22,6 @@ exports.sendEmailToList = async (req, res) => {
       .replace(/\{\{name\}\}/g, user.name)
       .replace(/\{\{email\}\}/g, user.email);
 
-    // Replace custom property placeholders with actual values or fallbacks
     for (const prop of list.customProperties) {
       const placeholder = `{{${prop.title}}}`;
       const value = user.properties.get(prop.title) || prop.defaultValue;
@@ -31,5 +30,6 @@ exports.sendEmailToList = async (req, res) => {
 
     await sendEmail(user.email, subject, emailBody);
   }
+  console.log(`Emails sent successfullyy`);
   res.status(200).send("Emails sent successfully");
 };

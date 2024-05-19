@@ -1,3 +1,4 @@
+const { log } = require("console");
 const List = require("../models/List");
 const User = require("../models/User");
 const { parseCSV } = require("../utils/csvHandler");
@@ -47,6 +48,7 @@ exports.unsubscribeUser = async (req, res) => {
   if (user) {
     user.unsubscribed = true;
     await user.save();
+    console.log(`User unsubscribed`);
     res.status(200).send("User unsubscribed successfully");
   } else {
     res.status(404).send("User not found");
