@@ -20,6 +20,10 @@ mongoose.connect(process.env.MONGO_URI, {
 
 app.use(express.json());
 
+app.get("/", function (req, res) {
+  res.send("Welcome to User List Management and Email Sending API");
+});
+
 // Routes
 app.use("/lists", listRoutes);
 app.use("/lists", userRoutes);
