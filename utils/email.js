@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -20,8 +20,10 @@ exports.sendEmail = (to, subject, text) => {
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.error(`Error sending email to ${to}:`, error);
         return reject(error);
       }
+      console.log(`Email sent to ${to}:`, info.response);
       resolve(info);
     });
   });
